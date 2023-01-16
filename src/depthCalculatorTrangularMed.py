@@ -32,14 +32,14 @@ class depthTriangular():
 
     def camParamSet(self):
         #################### camera0's intrinsic parameter ####################
-        cam0_fx = 893.7527
-        cam0_fy = 895.8022
-        cam0_cx = 648.9854
-        cam0_cy = 374.8394
+        cam0_fx = 895.8833
+        cam0_fy = 897.7566
+        cam0_cx = 637.2570
+        cam0_cy = 370.8199
         self.cam0_matrix = np.array([[cam0_fx,       0, cam0_cx],
                                     [      0, cam0_fy, cam0_cy],
                                     [      0,       0,       1]])
-        self.cam0_distCoeffs = np.array([[0.1083, -0.2401, 0, 0]])
+        self.cam0_distCoeffs = np.array([[0.1293, -0.2754, 0, 0]])
         #################### camera1's intrinsic parameter ####################
         cam1_fx = 893.7527
         cam1_fy = 895.8022
