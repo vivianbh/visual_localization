@@ -2,3 +2,6 @@
 
 - d435 x 2
 - position of mavs
+
+### Environment
+- sympy
