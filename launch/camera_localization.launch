@@ -1,10 +1,8 @@
 <launch>
-	<group ns="MAV2">
-		<node name="depthCalculatorTriangularMed" pkg="visual_localization" type="depthCalculatorTriangularMed.py" >
-            <remap from="/camera0/camera/disk_position" to="/MAV1/camera/disk_position" />
-            <remap from="/camera1/camera/disk_position" to="/MAV2/camera/disk_position" />
-            <remap from="/camera0/vrpn_client_node/MAV1/pose" to="/vrpn_client_node/MAV1/pose" />
-            <remap from="/camera1/vrpn_client_node/MAV1/pose" to="/vrpn_client_node/MAV2/pose" />
-        </node>
-	</group>
+    <node name="depthCalculatorTriangularMed" pkg="visual_localization" type="depthCalculatorTriangularMed.py" >
+        <remap from="/camera0/camera/disk_position" to="/MAV1/camera/disk_position" />
+        <remap from="/camera1/camera/disk_position" to="/MAV2/camera/disk_position" />
+        <remap from="/camera0/vrpn_client_node/MAV1/pose" to="/vrpn_client_node/MAV1/pose" />
+        <remap from="/camera1/vrpn_client_node/MAV1/pose" to="/vrpn_client_node/MAV2/pose" />
+    </node>
 </launch>
