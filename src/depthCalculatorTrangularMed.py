@@ -15,9 +15,11 @@ class depthTriangular():
         self.target1Pos_sub = rospy.Subscriber("/camera1/camera/disk_position", Point, self.target1PosCb)
         self.cam0Pos_sub = rospy.Subscriber("/camera0/vrpn_client_node/MAV1/pose", PoseStamped, self.cam0PosCb)
         self.cam1Pos_sub = rospy.Subscriber("/camera1/vrpn_client_node/MAV1/pose", PoseStamped, self.cam1PosCb)
+        self.loca_pub = rospy.Publisher("/world/target/position", Point, queue_size=10)
         self.imgSize = (720, 1280) # <type 'tuple'>
         self.img0Coord = ()
         self.img1Coord = ()
+        self.loca_data = Point()
         #################### camera's parameter ####################
         self.cam0_matrix = np.array(0)
         self.cam1_matrix = np.array(0)
@@ -94,16 +96,24 @@ class depthTriangular():
             #print(eq1)
             #print(eq2)
             var = solve((eq1, eq2), (t1, t2))
-            print(var[t1])
+            #print(var[t1])
+            x = self.cam0_position[0] + var[t1] * cam0_vector[0]
+            y = self.cam0_position[1] + var[t1] * cam0_vector[1]
             depth = self.cam0_position[2] + var[t1] * cam0_vector[2]
-            print('x: ', self.cam0_position[0] + var[t1] * cam0_vector[0], ' ', self.cam1_position[0] + var[t2] * cam1_vector[0])
-            print('y: ', self.cam0_position[1] + var[t1] * cam0_vector[1], ' ', self.cam1_position[1] + var[t2] * cam1_vector[1])
-            print('z: ', depth, ' ', self.cam1_position[2] + var[t2] * cam1_vector[2])
+            #print('x: ', self.cam0_position[0] + var[t1] * cam0_vector[0], ' ', self.cam1_position[0] + var[t2] * cam1_vector[0])
+            #print('y: ', self.cam0_position[1] + var[t1] * cam0_vector[1], ' ', self.cam1_position[1] + var[t2] * cam1_vector[1])
+            #print('z: ', depth, ' ', self.cam1_position[2] + var[t2] * cam1_vector[2])
+
+            self.loca_data.x = x
+            self.loca_data.y = y
+            self.loca_data.z = depth
+            self.loca_pub.publish(self.loca_data)
 
 if __name__ == "__main__":
     dt = depthTriangular()
-    
+    rate = rospy.Rate(10)
     while not rospy.is_shutdown():
         dt.DepthCalculator()
+        rate.sleep()
 
-    rospy.spin()
+    #rospy.spin()
