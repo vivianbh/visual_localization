@@ -1,8 +1,9 @@
+<?xml version="1.0"?>
 <launch>
     <group ns="camera0">
         <arg name = "pathToRosbag"  default = "/home/kiki/ncrl/formation_ws/src/visual_localization/rosbag/height_100/camera0.bag" />
         <remap from = "/camera_image/detected" to = "/camera0/camera_image/detected" />
-        <remap from = "/world/disk_position" to = "/camera0/world/disk_positiond" />
+        <remap from = "/world/disk_position" to = "/camera0/world/disk_position" />
         <remap from = "/camera/disk_position" to = "/camera0/camera/disk_position" />
         <remap from = "/vrpn_client_node/MAV1/pose" to = "/camera0/vrpn_client_node/MAV1/pose" />
         <node pkg  = "rosbag"
@@ -14,7 +15,7 @@
     <group ns="camera1">
         <arg name = "pathToRosbag"  default = "/home/kiki/ncrl/formation_ws/src/visual_localization/rosbag/height_100/camera2.bag" />
         <remap from = "/camera_image/detected" to = "/camera1/camera_image/detected" />
-        <remap from = "/world/disk_position" to = "/camera1/world/disk_positiond" />
+        <remap from = "/world/disk_position" to = "/camera1/world/disk_position" />
         <remap from = "/camera/disk_position" to = "/camera1/camera/disk_position" />
         <remap from = "/vrpn_client_node/MAV1/pose" to = "/camera1/vrpn_client_node/MAV1/pose" />
         <node pkg  = "rosbag"
